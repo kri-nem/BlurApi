@@ -1,6 +1,7 @@
 using BlurApiServer.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.OpenApi.Extensions;
 
 namespace BlurApiServer.Controllers
 {
@@ -13,7 +14,17 @@ namespace BlurApiServer.Controllers
         [Route("blur_image")]
         public async Task<ActionResult> BlurImage(IFormFile uploadedFile, EncodingType encodingType)
         {
-            return File(uploadedFile.OpenReadStream(), "image/jpeg");
+            if (HasImageAsContentType(uploadedFile))
+            {
+                return File(blurApiService.ProcessImage(uploadedFile, encodingType), "image/jpeg");
+            }
+
+            return new BadRequestResult();
+        }
+
+        private static bool HasImageAsContentType(IFormFile uploadedFile)
+        {
+            return uploadedFile.ContentType.Split("/").First().Equals("image");
         }
     }
 }
