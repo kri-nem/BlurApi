@@ -1,3 +1,4 @@
+using BlurApiServer.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -5,7 +6,8 @@ namespace BlurApiServer.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class BlurApiController : ControllerBase
+    public class BlurApiController(ILogger<BlurApiController> logger, IBlurApiService blurApiService)
+        : ControllerBase
     {
         [HttpPost]
         [Route("blur_image")]
