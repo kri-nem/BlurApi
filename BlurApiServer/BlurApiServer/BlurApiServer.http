@@ -1,0 +1,6 @@
+@BlurApiServer_HostAddress = http://localhost:5128
+
+GET {{BlurApiServer_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
