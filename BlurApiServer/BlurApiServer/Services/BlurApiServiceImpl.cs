@@ -10,7 +10,13 @@ public class BlurApiServiceImpl : IBlurApiService
 
     public Stream ProcessImage(IFormFile uploadedFile, EncodingType encodingType)
     {
-        uploadedFile.OpenReadStream();
+        using (var stream = new MemoryStream())
+        {
+            uploadedFile.CopyTo(stream);
+            var bytes = stream.ToArray();
+            ProcessImageExternally(bytes, bytes.Length, (int)encodingType);
+        }
+
         return uploadedFile.OpenReadStream();
     }
 }
