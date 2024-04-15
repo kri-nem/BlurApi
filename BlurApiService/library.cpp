@@ -15,9 +15,10 @@ int process_image(unsigned char *src, int srcSize, EncodingType encodingType) {
     cv::GaussianBlur(img, img, {31, 31}, 0, 0);
 
     // For testing purposes
+    /*
     cv::imshow("Display window", img);
     cv::waitKey(0);
-
+    */
 
     std::vector<unsigned char> buf;
     cv::imencode(getExtensionFor(encodingType), img, buf);
@@ -28,9 +29,9 @@ int process_image(unsigned char *src, int srcSize, EncodingType encodingType) {
 std::string getExtensionFor(EncodingType encodingType) {
     switch (encodingType) {
         case JPEG:
-            return "jpeg";
+            return ".jpeg";
         case PNG:
-            return "png";
-        default: return "jpeg";
+            return ".png";
+        default: return ".jpeg";
     }
 }
