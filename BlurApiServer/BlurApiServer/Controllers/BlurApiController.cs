@@ -10,7 +10,7 @@ namespace BlurApiServer.Controllers
     {
         [HttpPost]
         [Route("blur_image")]
-        public async Task<ActionResult> BlurImage(IFormFile uploadedFile, EncodingType encodingType)
+        public ActionResult BlurImage(IFormFile uploadedFile, EncodingType encodingType)
         {
             if (HasImageAsContentType(uploadedFile))
             {
