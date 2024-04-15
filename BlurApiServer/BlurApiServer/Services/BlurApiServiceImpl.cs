@@ -6,7 +6,7 @@ public class BlurApiServiceImpl : IBlurApiService
 {
     [DllImport("/home/k/Development/BlurApi/BlurApiService/cmake-build-release/libBlurApiService.so",
         EntryPoint = "process_image")]
-    private static extern int ProcessImageExternally(byte[] src, int srcSize, int encTy);
+    private static extern int ProcessImageExternally(byte[] image, int imageSize, int encodingType);
 
     public Stream ProcessImage(IFormFile uploadedFile, EncodingType encodingType)
     {
