@@ -1,7 +1,5 @@
 using BlurApiServer.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.OpenApi.Extensions;
 
 namespace BlurApiServer.Controllers
 {
