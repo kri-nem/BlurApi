@@ -8,18 +8,17 @@ public class BlurApiServiceImpl : IBlurApiService
         EntryPoint = "process_image")]
     private static extern int ProcessImageExternally(byte[] image, int imageSize, int encodingType);
 
-    public Stream ProcessImage(IFormFile uploadedFile, EncodingType encodingType)
+    public async Task<Stream> ProcessImage(Stream fileStream, EncodingType encodingType)
     {
         byte[] bytes;
-        byte[] bytesWithPadding;
 
-        using (var stream = new MemoryStream())
+        await using (var memoryStream = new MemoryStream())
         {
-            uploadedFile.CopyTo(stream);
-            bytes = stream.ToArray();
+            await fileStream.CopyToAsync(memoryStream);
+            bytes = memoryStream.ToArray();
         }
-        
-        bytesWithPadding = new byte[bytes.Length * 10];
+
+        var bytesWithPadding = new byte[bytes.Length * 10];
         bytes.CopyTo(bytesWithPadding, 0);
 
         ProcessImageExternally(bytesWithPadding, bytesWithPadding.Length, (int)encodingType);

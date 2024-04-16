@@ -2,5 +2,5 @@ namespace BlurApiServer.Services;
 
 public interface IBlurApiService
 {
-    Stream ProcessImage(IFormFile uploadedFile, EncodingType encodingType);
+    Task<Stream> ProcessImage(Stream fileStream, EncodingType encodingType);
 }
