@@ -17,9 +17,7 @@ namespace BlurApiServer.Controllers
             await using var fileStream = uploadedFile.OpenReadStream();
 
             return File(
-                await blurApiService.ProcessImage(
-                    fileStream,
-                    encodingType),
+                await blurApiService.ProcessImage(fileStream, encodingType),
                 GetContentTypeFor(encodingType));
         }
 
