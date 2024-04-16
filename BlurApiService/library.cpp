@@ -8,17 +8,38 @@
 std::string getExtensionFor(EncodingType encodingType);
 std::vector<int> getFlagsForEncoding(EncodingType encodingType);
 
-int process_image(unsigned char* src, int srcSize, EncodingType encodingType)
+int process_image(unsigned char* image, int imageSize, EncodingType encodingType)
 {
-    cv::Mat img = cv::imdecode({ src, srcSize }, cv::IMREAD_COLOR);
-    if (img.empty()) return 1;
-    cv::GaussianBlur(img, img, { 31, 31 }, 0, 0);
-    std::vector<unsigned char> buf;
-    cv::imencode(getExtensionFor(encodingType), img, buf, getFlagsForEncoding(encodingType));
+    cv::Mat decodedImage = cv::imdecode(
+        { image, imageSize },
+        cv::IMREAD_COLOR);
 
-    for (int i = 0; i < buf.size() && i < srcSize; i++)
+    if (decodedImage.empty()) return 1;
+
+    cv::GaussianBlur(
+        decodedImage,
+        decodedImage,
+        { 31, 31 },
+        0,
+        0);
+
+    std::vector<unsigned char> buffer;
+
+    bool isEncodingSuccessful = cv::imencode(
+        getExtensionFor(encodingType),
+        decodedImage,
+        buffer,
+        getFlagsForEncoding(encodingType));
+
+    if(!isEncodingSuccessful) return 2;
+
+    bool isBufferTooSmallForEncodedImage = buffer.size() > imageSize;
+
+    if(isBufferTooSmallForEncodedImage) return 3;
+
+    for (int i = 0; i < buffer.size(); i++)
     {
-        src[i] = buf[i];
+        image[i] = buffer[i];
     }
 
     return 0;

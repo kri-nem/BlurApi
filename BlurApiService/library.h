@@ -6,7 +6,7 @@ enum EncodingType {
 };
 
 extern "C" {
-int process_image(unsigned char *src, int srcSize, EncodingType encodingType);
+int process_image(unsigned char *image, int imageSize, EncodingType encodingType);
 };
 
 #endif //BLURAPISERVICE_LIBRARY_H
