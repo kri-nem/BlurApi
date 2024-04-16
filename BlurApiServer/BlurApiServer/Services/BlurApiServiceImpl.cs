@@ -22,7 +22,7 @@ public class BlurApiServiceImpl : IBlurApiService
         bytesWithPadding = new byte[bytes.Length * 10];
         bytes.CopyTo(bytesWithPadding, 0);
 
-        ProcessImageExternally(bytesWithPadding, bytes.Length, (int)encodingType);
+        ProcessImageExternally(bytesWithPadding, bytesWithPadding.Length, (int)encodingType);
 
         return new MemoryStream(bytesWithPadding);
     }

@@ -15,7 +15,7 @@ int process_image(unsigned char *src, int srcSize, EncodingType encodingType) {
     std::vector<unsigned char> buf;
     cv::imencode(getExtensionFor(encodingType), img, buf);
 
-    for(int i = 0; i < buf.size(); i++) {
+    for(int i = 0; i < buf.size() && i < srcSize; i++) {
         src[i] = buf[i];
     }
 
