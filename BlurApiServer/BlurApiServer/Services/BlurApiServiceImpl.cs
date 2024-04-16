@@ -21,7 +21,17 @@ public class BlurApiServiceImpl : IBlurApiService
         var bytesWithPadding = new byte[bytes.Length * 10];
         bytes.CopyTo(bytesWithPadding, 0);
 
-        ProcessImageExternally(bytesWithPadding, bytesWithPadding.Length, (int)encodingType);
+        var errorCode = ProcessImageExternally(bytesWithPadding, bytesWithPadding.Length, (int)encodingType);
+
+        switch (errorCode)
+        {
+            case 1:
+                throw new Exception("The uploaded image can't be decoded");
+            case 2:
+                throw new Exception("Encoding failed");
+            case 3:
+                throw new Exception("The uploaded image has very too high compression ratio");
+        }
 
         return new MemoryStream(bytesWithPadding);
     }
