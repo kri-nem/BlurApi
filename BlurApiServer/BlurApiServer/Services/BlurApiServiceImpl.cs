@@ -2,12 +2,22 @@ using System.Runtime.InteropServices;
 
 namespace BlurApiServer.Services;
 
+/// <summary>
+/// Implementation of IBlurService using native shared library and OpenCV
+/// </summary>
 public class BlurApiServiceImpl : IBlurApiService
 {
     [DllImport("/home/k/Development/BlurApi/BlurApiService/cmake-build-release/libBlurApiService.so",
         EntryPoint = "process_image")]
     private static extern int ProcessImageExternally(byte[] image, int imageSize, int encodingType);
 
+    /// <summary>
+    /// Blurs the image provided in stream, and encodes it to give encoding type
+    /// </summary>
+    /// <param name="fileStream"></param>
+    /// <param name="encodingType"></param>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
     public async Task<Stream> ProcessImage(Stream fileStream, EncodingType encodingType)
     {
         byte[] bytes;
