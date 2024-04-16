@@ -7,7 +7,7 @@ namespace BlurApiServer.Services;
 /// </summary>
 public class BlurApiServiceImpl : IBlurApiService
 {
-    [DllImport("/home/k/Development/BlurApi/BlurApiService/cmake-build-release/libBlurApiService.so",
+    [DllImport("libBlurApiService.so",
         EntryPoint = "process_image")]
     private static extern int ProcessImageExternally(byte[] image, int imageSize, int encodingType);
 
