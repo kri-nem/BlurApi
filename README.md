@@ -1,6 +1,6 @@
 # BlurApi
 An ASP.NET Core Web API for blurring images and encoding them to JPEG or
-PNG. Decoding, blurring and encoding of the image is implemented in C++
+PNG. Decoding, blurring, and encoding of the image is implemented in C++
 using OpenCV library.   
 
 I created this project as part of a job application. Although it is my first
@@ -9,11 +9,11 @@ experience in Spring & C++.
 
 # Documentation
 The code has XML documentation in code. The API is documented with OpenAPI.
-The easiest way of getting familiar with it is building and running the
+The easiest way of getting familiar with it is by building and running the
 project. SwaggerUI is turned on by default and documents the API extensively.
 
 # Building and running the project
-The project primary target is Linux. I developed and tested it on Ubuntu
+The project's primary target is Linux. I developed and tested it on Ubuntu
 22.04. I'm quite sure You can run in WSL too, but I haven't tried it.
 
 ## Step-by-step guide
@@ -35,7 +35,7 @@ cmake -DCMAKE_BUILD_TYPE=Release -S . -B ./build/
 cmake --build ./build/
 ```
 The shared object is in the ./build/ directory, we are going to need it later.
-Let build the server:
+Let's build the server:
 ```bash
 cd ../BlurApiServer/BlurApiServer/
 dotnet build --configuration Release --runtime linux-x64
@@ -51,6 +51,6 @@ Now you can run the API with the command:
 dotnet run ./bin/Release/net8.0/linux-x64/BlurApiServer.dll
 ```
 
-In the terminal you should see the url of the running api, something like
+In the terminal, you should see the URL of the running API, something like
 http://localhost:5128  
-SwaggerUI with the API documentation can be visites at: http://localhost:5128/swagger
+SwaggerUI with the API documentation can be visited at: http://localhost:5128/swagger
