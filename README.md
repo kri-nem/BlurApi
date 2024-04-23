@@ -3,7 +3,7 @@ An ASP.NET Core Web API for blurring images and encoding them to JPEG or
 PNG. Decoding, blurring, and encoding of the image is implemented in C++
 using OpenCV library.   
 
-I created this project as part of a job application. Although it is my first
+I created this project as part of an assignment. Although it is my first
 ASP.NET project, it was quite surprising how self-explanatory it is, having
 experience in Spring & C++.
 
