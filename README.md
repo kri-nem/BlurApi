@@ -7,16 +7,16 @@ I created this project as part of an assignment. Although it is my first
 ASP.NET project, it was quite surprising how self-explanatory it is, having
 experience in Spring & C++.
 
-# Documentation
+## Documentation
 The code has XML documentation in code. The API is documented with OpenAPI.
 The easiest way of getting familiar with it is by building and running the
 project. SwaggerUI is turned on by default and documents the API extensively.
 
-# Building and running the project
+## Building and running the project
 The project's primary target is Linux. I developed and tested it on Ubuntu
 22.04. I'm quite sure You can run in WSL too, but I haven't tried it.
 
-## Step-by-step guide
+### Step-by-step guide
 Clone the repository:
 ```bash
 git clone git@github.com:kri-nem/BlurApi.git
